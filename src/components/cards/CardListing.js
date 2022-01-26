@@ -1,6 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import Image from 'next/image';
 import React from 'react';
+import { MdLocationOn } from '@react-icons/all-files/md/MdLocationOn';
+import { FiCamera } from '@react-icons/all-files/fi/FiCamera';
 
 export default function CardListing() {
   return (
@@ -26,43 +28,13 @@ export default function CardListing() {
           </div>
           <div className="absolute bottom-2 w-full px-5 flex justify-between text-white">
             <span className="flex items-center w-2/3">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5 md:h-8 md:w-8"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
-                  clipRule="evenodd"
-                />
-              </svg>
+              <MdLocationOn />
               <p className="text-sm ml-2 truncate">
                 Av. Boa Viagem, 365 adsasda ds ads ads adad asd dsadadasdad
               </p>
             </span>
             <span className="flex items-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-4 w-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"
-                />
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"
-                />
-              </svg>
+              <FiCamera />
               <p className="text-sm ml-2">6</p>
             </span>
           </div>
