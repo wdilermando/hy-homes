@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  .input-hy {
+    @apply appearance-none border border-gray-300 w-full rounded-sm bg-white text-gray-600 px-4 py-2 outline-none;
+  }
+
+  .input-hy:hover {
+    @apply border border-blue-300 cursor-text;
+  }
+
+  .input-hy:focus {
+    @apply border border-blue-300 shadow-md;
+  }
+
+  .input-hy-form {
+    @apply appearance-none border border-gray-300 w-full rounded-sm bg-gray-100 text-gray-600 px-4 py-2 outline-none;
+  }
+
+  .input-hy-form::placeholder {
+    @apply text-gray-600;
+  }
+
+  .input-hy-form:hover {
+    @apply border border-blue-300 cursor-text;
+  }
+
+  .input-hy-form:focus {
+    @apply border border-blue-300;
+  }
+
+  .image-feature-transition {
+    @apply hover:scale-105 hover:shadow-lg transition-all duration-300 ease-in-out;
+  }
+
+  .btn {
+    @apply bg-blue-700 hover:bg-blue-600 rounded-md py-2 text-white font-semibold;
+  }
+  .title-footer {
+    @apply font-semibold mb-4 text-lg;
+  }
+
+  .subtitle-footer {
+    @apply text-sm font-light text-gray-200;
+  }
+}
+
+.elementor-shape-fill {
+  fill: #fff;
+  -webkit-transform-origin: center;
+  -ms-transform-origin: center;
+  transform-origin: center;
+  -webkit-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+
+.position-hero {
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.fix-ov {
+  -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
+}
