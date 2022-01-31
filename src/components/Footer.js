@@ -1,13 +1,10 @@
 import Image from 'next/image';
 import React from 'react';
 
-import { FaFacebookF } from '@react-icons/all-files/fa/FaFacebookF';
-import { FaRegBuilding } from '@react-icons/all-files/fa/FaRegBuilding';
-import { MdDesktopWindows } from '@react-icons/all-files/md/MdDesktopWindows';
-import { FiSmartphone } from '@react-icons/all-files/fi/FiSmartphone';
-import { FiMail } from '@react-icons/all-files/fi/FiMail';
-import { AiOutlineWhatsApp } from '@react-icons/all-files/ai/AiOutlineWhatsApp';
-import { FaInstagram } from '@react-icons/all-files/fa/FaInstagram';
+import { FaFacebookF, FaRegBuilding, FaInstagram } from 'react-icons/fa';
+import { MdDesktopWindows } from 'react-icons/md';
+import { FiSmartphone, FiMail } from 'react-icons/fi';
+import { AiOutlineWhatsApp } from 'react-icons/ai';
 
 const ContactInfo = ({ icon, info }) => (
   <span className="flex items-center mb-2">
@@ -45,8 +42,6 @@ export default function Footer() {
             <p className="subtitle-footer">
               HY homes está empenhada em fornecer um alto nível de
               especialização, atendimento ao cliente e atenção aos detalhes.
-              Estamos empenhados em fornecer um alto nível de especialização,
-              atendimento ao cliente e atenção aos detalhes.
             </p>
           </div>
           <div className="flex-col items-start mb-4">

@@ -1,13 +1,9 @@
 import React from 'react';
-import Navbar from '../Navbar';
 
 export default function HeroSection() {
   return (
-    <div className="relative w-full min-h-screen text-white bg-hero-pattern bg-cover">
-      <Navbar />
-      {/* <div className="w-full bg-gradient-to-t from-black to-transparent md:absolute opacity-50 bottom-0 z-0"></div> */}
-
-      <div className="md:flex md:mt-12 items-center justify-between px-6 md:px-24 xl:px-48 py-8 z-20 md:absolute position-hero">
+    <section className="relative w-full min-h-screen text-white bg-hero-pattern bg-cover">
+      <div className="md:flex pt-40 md:pt-10 md:mt-40 items-center justify-between px-6 md:px-24 xl:px-48 py-8 md:absolute position-hero z-10">
         <div className="max-w-xl">
           <h1 className="text-6xl font-semibold tracking-tighter">
             HY homes,
@@ -117,6 +113,6 @@ export default function HeroSection() {
           ></path>
         </svg>
       </div>
-    </div>
+    </section>
   );
 }

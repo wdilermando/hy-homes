@@ -3,15 +3,30 @@ import FeaturingListSection from '../components/sections/FeaturingListSection';
 import HeroSection from '../components/sections/HeroSection';
 import ListingsByRegionSection from '../components/sections/ListingsByRegionSection';
 import PortfolioSection from '../components/sections/PortfolioSection';
+import { allListings } from '../utils/queries';
 
-export default function Home() {
+function Home({ listings }) {
   return (
     <>
       <HeroSection />
       <PortfolioSection />
-      <FeaturingListSection />
+      <FeaturingListSection listings={listings} />
       <FeaturedSection />
       <ListingsByRegionSection />
     </>
   );
 }
+
+export async function getStaticProps(context) {
+  const results = await allListings({
+    cidade: '',
+    tipoDeImovel: '',
+    finalidade: '',
+  });
+
+  return {
+    props: { listings: results }, // will be passed to the page component as props
+  };
+}
+
+export default Home;

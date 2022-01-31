@@ -1,37 +1,79 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 export default function Navbar() {
-  const menuItems = ['Inicio', 'Todos os imoveis', 'Quem somos', 'Contato'];
-  const activeMenu = 'Inicio';
+  const { pathname } = useRouter();
+  const isHomePath = pathname === '/';
+  const menuItems = [
+    { label: 'Início', url: '/' },
+    { label: 'Todos os imóveis', url: '/search-page' },
+    { label: 'Quem somos', url: '/about' },
+    { label: 'Contato', url: '/contact' },
+  ];
+
+  const [activeMenu, setActiveMenu] = useState('/');
   const [open, setOpen] = useState(false);
+
+  const [navbar, setNavbar] = useState(false);
+
+  const changeBg = () => {
+    if (window.scrollY >= 80) {
+      setNavbar(true);
+    } else {
+      setNavbar(false);
+    }
+  };
+
+  if (typeof window !== 'undefined') {
+    window.addEventListener('scroll', changeBg);
+  }
+
+  useEffect(() => {
+    setActiveMenu(pathname);
+  }, [pathname]);
+
   return (
     <>
-      <nav className="flex items-center justify-between px-6 md:px-24 py-8 mx-auto z-20">
-        <a
-          href="#"
-          className="text-2xl md:text-4xl font-bold tracking-wide z-10"
-        >
-          HY homes
-        </a>
+      <nav
+        className={`fixed w-full flex items-center justify-between px-6 md:px-24 py-4 mx-auto z-20 text-white ${
+          navbar &&
+          isHomePath &&
+          'bg-gradient-to-tr from-blue-600 to-blue-800 md:shadow-md transition duration-500 ease-in-out'
+        } ${
+          !isHomePath &&
+          'bg-gradient-to-tr from-blue-600 to-blue-800 md:shadow-md'
+        }`}
+      >
+        {' '}
+        <Link href="/">
+          <a
+            href="#"
+            className="text-2xl md:text-4xl font-bold tracking-wide z-10"
+          >
+            HY homes
+          </a>
+        </Link>
         <div className="hidden md:flex items-center space-x-14">
           <ul className="flex items-center space-x-8">
             {menuItems.map((menu, index) => (
               <li
                 key={index}
                 className={`texl font-medium ${
-                  activeMenu === menu ? 'font-bold text-blue-200' : ''
+                  activeMenu === menu.url ? 'font-bold text-blue-200' : ''
                 } group`}
               >
-                <a href="#">{menu}</a>
+                <Link href={menu.url}>
+                  <a>{menu.label}</a>
+                </Link>
                 <div className="h-0.5 bg-blue-500 scale-x-0 group-hover:scale-100 transition-transform origin-left rounded-full duration-300 ease-out"></div>
               </li>
             ))}
           </ul>
-          <button className="flex justify-center items-center py-2 px-7 font-medium text-white hover:text-gray-800 bg-transparent hover:bg-white border border-blue-50 rounded-md">
+          <button className="flex justify-center items-center py-2 px-7 font-medium text-white hover:text-gray-800 bg-transparent hover:bg-white border border-blue-50 rounded-md transition duration-500 ease-in-out">
             Anunciar um imóvel
           </button>
         </div>
-
         <button
           className="md:hidden rounded-lg outline-none focus:outline-none focus:shadow-outline z-10"
           onClick={() => setOpen(!open)}
@@ -55,7 +97,7 @@ export default function Navbar() {
       </nav>
       {/* responsive menu */}
       <div
-        className={`md:hidden flex items-center bg-blue-500 shadow-md rounded-sm p-3 text-gray-100 w-full z-9 absolute top-0 px-6 ${
+        className={`md:hidden flex items-center bg-blue-500 shadow-md rounded-sm p-3 text-white w-full z-10 top-0 px-6 fixed ${
           open ? 'scale-y-100' : 'scale-y-0'
         } origin-top rounded-full duration-300 ease-in-out`}
       >
@@ -66,9 +108,14 @@ export default function Navbar() {
                 key={index}
                 className="py-2 text-xl transition-opacity duration-700 ease-in-out"
               >
-                <a href="#" className="font-semibold">
-                  {menu}
-                </a>
+                <Link href={menu.url}>
+                  <a
+                    className="font-semibold"
+                    onClick={() => open && setOpen(false)}
+                  >
+                    {menu.label}
+                  </a>
+                </Link>
               </li>
             ))}
           </ul>

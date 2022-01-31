@@ -4,7 +4,7 @@ import SectionTitle from '../elements/SectionTitle';
 
 export default function ListingsByRegionSection() {
   return (
-    <div className="w-full bg-[#f8f8f8]">
+    <section className="w-full bg-[#f8f8f8]">
       <div className="px-6 md:px-24 xl:px-48 py-8">
         <SectionTitle
           title={'Imóveis por Região'}
@@ -25,7 +25,7 @@ export default function ListingsByRegionSection() {
             imgSrc={
               'https://pt-wpresidence.b-cdn.net/wp-content/uploads/2021/05/view-of-city-street-258447-1-1-980x777-1.jpg'
             }
-            title={'Boa Viagem'}
+            title={'Pina'}
             estateCount={3}
             byRegion
           />
@@ -33,7 +33,7 @@ export default function ListingsByRegionSection() {
             imgSrc={
               'https://pt-wpresidence.b-cdn.net/wp-content/uploads/2021/05/view-of-city-street-258447-1-1-980x777-1.jpg'
             }
-            title={'Boa Viagem'}
+            title={'Porto de Galinhas'}
             estateCount={3}
             byRegion
           />
@@ -41,12 +41,12 @@ export default function ListingsByRegionSection() {
             imgSrc={
               'https://pt-wpresidence.b-cdn.net/wp-content/uploads/2021/05/view-of-city-street-258447-1-1-980x777-1.jpg'
             }
-            title={'Boa Viagem'}
+            title={'Muro Alto'}
             estateCount={3}
             byRegion
           />
         </div>
       </div>
-    </div>
+    </section>
   );
 }

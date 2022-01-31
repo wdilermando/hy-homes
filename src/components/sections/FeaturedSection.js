@@ -3,7 +3,7 @@ import React from 'react';
 
 export default function FeaturedSection() {
   return (
-    <div className="w-full min-h-full overflow-hidden">
+    <section className="w-full min-h-full overflow-hidden">
       <div className="grid grid-cols-1 xl:grid-cols-2">
         <div className="bg-[url('https://pt-wpresidence.b-cdn.net/wp-content/uploads/2021/05/decor2-1110x623.jpg')] bg-cover h-auto flex items-end justify-center w-full image-feature-transition">
           <div className="bg-white px-4 w-80 md:w-2/5 py-6 mt-48 rounded-t-sm pb-4 cursor-pointer">
@@ -70,6 +70,6 @@ export default function FeaturedSection() {
           <div className="bg-[url('https://pt-wpresidence.b-cdn.net/wp-content/uploads/2014/05/designer2-835x467.jpeg')] bg-cover image-feature-transition"></div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
