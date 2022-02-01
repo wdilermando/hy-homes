@@ -12,8 +12,10 @@ import {
 } from 'react-share';
 import SwiperThumb from '../../components/elements/SwiperThumb';
 import { allListings, listingById } from '../../utils/queries';
+import { StructuredText } from 'react-datocms';
 
 export default function ListingDetail({ listing }) {
+  const listingUrl = '#';
   const iconsProps = { size: 24, className: 'md:w-full' };
   const mappingListingItems = {
     bedroom: <BiBed {...iconsProps} />,
@@ -22,22 +24,6 @@ export default function ListingDetail({ listing }) {
     area: <BiExpand {...iconsProps} />,
     since: <BiCalendar {...iconsProps} />,
   };
-
-  const listingItems = [
-    { alias: 'bedroom', desc: '2 Quartos' },
-    { alias: 'bathroom', desc: '1 Banheiro' },
-    { alias: 'garage', desc: '1 Garagem' },
-    { alias: 'area', desc: '54m²' },
-    { alias: 'since', desc: 'Construção 2019' },
-  ];
-
-  const addressInfo = [
-    { label: 'Endereco', value: 'Av. Antonio Cabral de Souza' },
-    { label: 'Cidade', value: 'Paulista' },
-    { label: 'Area', value: 'Regiao Metropolitana' },
-    { label: 'Estado', value: 'Pernambuco' },
-    { label: 'CEP', value: '53403-610' },
-  ];
 
   const detailsInfo = [
     { label: 'Banheiros', value: 1 },
@@ -59,15 +45,15 @@ export default function ListingDetail({ listing }) {
           </h1>
           <p className="font-normal text-gray-500 flex items-center">
             <MdLocationOn />
-            {listing?.endereco}
+            {listing?.logradouro}
           </p>
         </div>
         <div className="flex items-center space-x-2">
           <p>Compartilhe:</p>
-          <FacebookShareButton url={'#'}>
+          <FacebookShareButton url={listingUrl}>
             <FacebookIcon size={32} round />
           </FacebookShareButton>
-          <WhatsappShareButton url="#">
+          <WhatsappShareButton url={listingUrl}>
             <WhatsappIcon size={32} round />
           </WhatsappShareButton>
         </div>
@@ -75,14 +61,17 @@ export default function ListingDetail({ listing }) {
       <div className="px-6 md:px-24 xl:px-48 mt-4 pb-12">
         <div className="md:flex items-start md:space-x-4 space-y-3 md:space-y-0">
           <article className="w-full md:w-3/4 space-y-6">
-            <SwiperThumb />
+            <SwiperThumb
+              featureImg={listing?.imagemDestaque}
+              gallery={listing?.galeria}
+            />
             <CardDefaultWrapper title={'Visão geral'}>
               <div className="w-40">
                 <p className="font-bold">Atualizado em:</p>
-                13 de Julho 2022
+                {listing?._updatedAt}
               </div>
               <div className="grid grid-cols-2 md:grid-cols-5 w-full">
-                {listingItems.map((item, index) => (
+                {listing?.listingItems?.map((item, index) => (
                   <span
                     className="flex-col items-center md:text-center"
                     key={index}
@@ -96,34 +85,14 @@ export default function ListingDetail({ listing }) {
             <CardDefaultWrapper title={'Descrição Geral'}>
               <div className="">
                 <p className="text-gray-500 text-md">
-                  Apartamento totalmente renovado localizado no Bairro dos
-                  Ingleses, em Arroios. Possui uma varanda de 6,5 m² orientada a
-                  sul, o que permite receber bastante luz o dia todo e durante o
-                  ano inteiro. Possui um amplo quarto principal com um closet
-                  que pode ser convertido em escritório, pois possui uma entrada
-                  independente de acesso pelo corredor do edifício. A sala, com
-                  grandes portas de vidro duplo e voltadas para a varanda,
-                  permitem bastante entrada de luz no interior do apartamento.
-                  Cozinha e casa de banho com excelentes acabamentos. Excelente
-                  opção para habitação própria ou investimento para
-                  rentabilização. Junto a todo o tipo de transportes, comércio
-                  local, escolas e outros serviços. Este é um bairro
-                  maioritariamente residencial e de comércio. As casas mantêm a
-                  arquitetura original, tendo na sua maioria uma boa dimensão.
-                  Aqui moram essencialmente famílias, num bairro onde se
-                  concentra o comércio tradicional – lojas de mobiliário, cafés,
-                  restaurantes – mas igualmente reflete as novas tendências. É
-                  um bairro muito interessante para viver, dada a sua
-                  centralidade, facilidade de acessos, rede de transportes
-                  públicos, e existência de equipamentos sociais como hospitais,
-                  escolas e polícia.
+                  <StructuredText data={listing?.descricao?.value} />
                 </p>
               </div>
             </CardDefaultWrapper>
             <CardDefaultWrapper title={'Endereço'}>
               <div className="w-full">
                 <div className="grid grid-cols-2 md:grid-cols-3">
-                  {addressInfo.map((item, index) => (
+                  {listing?.addressInfo?.map((item, index) => (
                     <span
                       key={index}
                       className={`${item.label === 'Endereco' && 'col-span-2'}`}
@@ -150,7 +119,7 @@ export default function ListingDetail({ listing }) {
           </article>
           <div className="w-full">
             <CardDefaultWrapper title={'Tem interesse?'}>
-              <div className="flex-col space-y-3">
+              <div className="flex-col space-y-3 w-full">
                 <form className="grid grid-cols-1 gap-2 pt-4">
                   <input
                     type={'text'}
@@ -196,7 +165,6 @@ export async function getStaticPaths() {
   const paths = listings.map((listing) => ({
     params: { id: listing.id },
   }));
-  console.log(paths);
   return {
     paths,
     fallback: true,

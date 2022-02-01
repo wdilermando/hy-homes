@@ -12,9 +12,7 @@ export default function FeaturingListSection({ listings }) {
             Imóveis em Destaque
           </h3>
           <p className="font-normal text-gray-500">
-            Confira abaixo algumas oportunidades disponíveis! Veja o que nossos
-            hóspedes <br /> têm a dizer sobre nós, nossas localizações e nossos
-            serviços.
+            Confira abaixo algumas oportunidades disponíveis!
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
@@ -24,7 +22,7 @@ export default function FeaturingListSection({ listings }) {
             .slice(0, 4)}
         </div>
         <div className="flex justify-center my-12">
-          <Link href="/search-page">
+          <Link href="/imoveis">
             <a className="btn w-80 py-4 text-center">Ver mais imóveis</a>
           </Link>
         </div>

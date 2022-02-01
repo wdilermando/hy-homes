@@ -25,7 +25,7 @@ export default function CardListing({
   };
 
   return (
-    <Link href={`/listing/${id}`}>
+    <Link href={`/imoveis/${id}`}>
       <a>
         <div className="flex justify-center rounded-md fix-ov h-full">
           <div className=" bg-white group cursor-pointer">
@@ -73,9 +73,9 @@ export default function CardListing({
               <p className="text-gray-700 group-hover:text-blue-400 transition-colors duration-500 ease-in-out font-bold text-lg mb-2 line-clamp-2 ">
                 {tituloDoAnuncio}
               </p>
-              <p className="text-gray-400 text-sm mb-4 line-clamp-3">
+              <span className="text-gray-400 text-sm mb-4 line-clamp-3">
                 <StructuredText data={descricao?.value} />
-              </p>
+              </span>
             </div>
             <div className="px-4 pb-4 flex items-center justify-start text-gray-600 text-sm">
               {amenities?.map((item, index) => (

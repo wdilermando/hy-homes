@@ -3,9 +3,10 @@ import React, { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import SwiperCore, { Navigation, Thumbs, Pagination } from 'swiper';
+import Image from 'next/image';
 SwiperCore.use([Navigation, Thumbs, Pagination]);
 
-export default function SwiperThumb({ data }) {
+export default function SwiperThumb({ featureImg, gallery }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   return (
     <>
@@ -21,11 +22,13 @@ export default function SwiperThumb({ data }) {
         thumbs={{ swiper: thumbsSwiper }}
         className="md:h-96"
       >
-        {[1, 2, 3, 4, 5, 6, 7, 8].map((item, index) => (
+        {gallery?.map((item, index) => (
           <SwiperSlide key={index}>
-            <img
-              src="https://hy4u-server.s3.amazonaws.com/content/uploads/2020/07/13132405/hy-beach-flats-recife-030.jpg"
+            <Image
+              layout="fill"
+              src={item.url}
               className="object-cover w-full"
+              alt={item.filename}
             />
           </SwiperSlide>
         ))}
@@ -39,11 +42,13 @@ export default function SwiperThumb({ data }) {
         watchSlidesProgress={true}
         className="md:h-20 mt-1"
       >
-        {[1, 2, 3, 4, 5, 6, 7, 8].map((item, index) => (
+        {gallery?.map((item, index) => (
           <SwiperSlide key={index}>
-            <img
-              src="https://hy4u-server.s3.amazonaws.com/content/uploads/2020/07/13132405/hy-beach-flats-recife-030.jpg"
+            <Image
+              layout="fill"
+              src={item.url}
               className="object-cover w-full"
+              alt={item.filename}
             />
           </SwiperSlide>
         ))}

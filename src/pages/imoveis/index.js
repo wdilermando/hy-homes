@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import CardListing from '../components/cards/CardListing';
-import FilterControl from '../components/elements/FilterControl';
-import SearchControl from '../components/elements/SearchControl';
-import { allListings } from '../utils/queries';
+import React, { useState } from 'react';
+import CardListing from '../../components/cards/CardListing';
+import FilterControl from '../../components/elements/FilterControl';
+import SearchControl from '../../components/elements/SearchControl';
+import { allListings } from '../../utils/queries';
 
 function SearchPage({ listings }) {
   const [filteredListing, setFilteredListing] = useState(listings);
@@ -18,8 +18,6 @@ function SearchPage({ listings }) {
     );
   });
 
-  console.log(filteredListing);
-
   const filteredValues = (values) => {
     setFilteredListing(values);
   };
@@ -27,7 +25,7 @@ function SearchPage({ listings }) {
   const hasResults = listingFiltered.length > 0;
 
   return (
-    <section className="w-full min-h-full bg-[#f8f8f8] ">
+    <section className="w-full min-h-screen bg-[#f8f8f8] ">
       <div className="w-full h-auto pt-16 bg-[#f2f2f2]">
         <div className="px-6 md:px-24 xl:px-48 py-8">
           <div className="flex flex-col items-start mb-6">
@@ -64,18 +62,7 @@ function SearchPage({ listings }) {
 }
 
 export async function getServerSideProps({ query }) {
-  let consulta;
-  if (Object.keys(query).length === 0 && query.constructor === Object) {
-    consulta = {
-      cidade: '',
-      tipoDeImovel: '',
-      finalidade: '',
-    };
-  } else {
-    consulta = { ...query };
-  }
-
-  const results = await allListings(consulta);
+  const results = await allListings({ ...query });
 
   return {
     props: { listings: results },

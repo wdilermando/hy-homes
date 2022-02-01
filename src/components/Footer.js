@@ -34,7 +34,7 @@ export default function Footer() {
   ];
 
   return (
-    <div className="w-full text-white">
+    <div className="w-full text-white" id="contato">
       <footer className="bg-gray-800 px-6 md:px-24 xl:px-48 py-8 mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
           <div className="flex-col items-start mb-4">

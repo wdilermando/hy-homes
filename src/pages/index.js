@@ -18,14 +18,10 @@ function Home({ listings }) {
 }
 
 export async function getStaticProps(context) {
-  const results = await allListings({
-    cidade: '',
-    tipoDeImovel: '',
-    finalidade: '',
-  });
+  const listings = await allListings({});
 
   return {
-    props: { listings: results }, // will be passed to the page component as props
+    props: { listings },
   };
 }
 

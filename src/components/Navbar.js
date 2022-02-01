@@ -7,9 +7,9 @@ export default function Navbar() {
   const isHomePath = pathname === '/';
   const menuItems = [
     { label: 'Início', url: '/' },
-    { label: 'Todos os imóveis', url: '/search-page' },
-    { label: 'Quem somos', url: '/about' },
-    { label: 'Contato', url: '/contact' },
+    { label: 'Todos os imóveis', url: '/imoveis' },
+    { label: 'Quem somos', url: '/sobre' },
+    { label: 'Contato', url: '#contato' },
   ];
 
   const [activeMenu, setActiveMenu] = useState('/');
@@ -39,34 +39,35 @@ export default function Navbar() {
         className={`fixed w-full flex items-center justify-between px-6 md:px-24 py-4 mx-auto z-20 text-white ${
           navbar &&
           isHomePath &&
-          'bg-gradient-to-tr from-blue-600 to-blue-800 md:shadow-md transition duration-500 ease-in-out'
-        } ${
-          !isHomePath &&
-          'bg-gradient-to-tr from-blue-600 to-blue-800 md:shadow-md'
-        }`}
+          'bg-blue-700 md:shadow-md transition duration-500 ease-in-out'
+        } ${!isHomePath && 'bg-blue-700 md:shadow-md'}`}
       >
         {' '}
         <Link href="/">
-          <a
-            href="#"
-            className="text-2xl md:text-4xl font-bold tracking-wide z-10"
-          >
+          <a className="text-2xl md:text-4xl font-bold tracking-wide z-10">
             HY homes
           </a>
         </Link>
         <div className="hidden md:flex items-center space-x-14">
           <ul className="flex items-center space-x-8">
             {menuItems.map((menu, index) => (
-              <li
-                key={index}
-                className={`texl font-medium ${
-                  activeMenu === menu.url ? 'font-bold text-blue-200' : ''
-                } group`}
-              >
+              <li key={index} className={`text-white group`}>
                 <Link href={menu.url}>
-                  <a>{menu.label}</a>
+                  <a
+                    className={`${
+                      activeMenu === menu.url
+                        ? 'font-extrabold '
+                        : 'font-medium'
+                    }`}
+                  >
+                    {menu.label}
+                  </a>
                 </Link>
-                <div className="h-0.5 bg-blue-500 scale-x-0 group-hover:scale-100 transition-transform origin-left rounded-full duration-300 ease-out"></div>
+                <div
+                  className={`h-0.5 ${
+                    !isHomePath ? 'bg-white' : 'bg-blue-700'
+                  } scale-x-0 group-hover:scale-100 transition-transform origin-left rounded-full duration-300 ease-out`}
+                ></div>
               </li>
             ))}
           </ul>
@@ -97,7 +98,7 @@ export default function Navbar() {
       </nav>
       {/* responsive menu */}
       <div
-        className={`md:hidden flex items-center bg-blue-500 shadow-md rounded-sm p-3 text-white w-full z-10 top-0 px-6 fixed ${
+        className={`md:hidden flex items-center bg-blue-700 shadow-md rounded-sm p-3 text-white w-full z-10 top-0 px-6 fixed ${
           open ? 'scale-y-100' : 'scale-y-0'
         } origin-top rounded-full duration-300 ease-in-out`}
       >
@@ -110,7 +111,11 @@ export default function Navbar() {
               >
                 <Link href={menu.url}>
                   <a
-                    className="font-semibold"
+                    className={`${
+                      activeMenu === menu.url
+                        ? 'font-extrabold '
+                        : 'font-medium'
+                    }`}
                     onClick={() => open && setOpen(false)}
                   >
                     {menu.label}

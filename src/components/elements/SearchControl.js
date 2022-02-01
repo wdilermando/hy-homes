@@ -7,7 +7,7 @@ export default function SearchControl() {
   const router = useRouter();
   const onSubmit = (data) => {
     const qs = new URLSearchParams(data);
-    router.push(`/search-page?${qs}`);
+    router.push(`/imoveis?${qs}`);
   };
   return (
     <section className="px-8 py-8 md:py-8 border border-gray-100 shadow-sm rounded-md bg-white">
@@ -19,7 +19,7 @@ export default function SearchControl() {
           className="form-select input-hy bg-white bg-clip-padding bg-no-repeat m-0 focus:border-0"
           {...register('cidade')}
         >
-          <option defaultValue={''}>Cidade</option>
+          <option value="">Cidade</option>
           <option value="Recife">Recife</option>
           <option value="Ipojuca">Ipojuca</option>
           <option value="Paulista">Paulista</option>
@@ -31,9 +31,7 @@ export default function SearchControl() {
           className="form-select input-hy bg-white bg-clip-padding bg-no-repeat m-0"
           {...register('tipoDeImovel')}
         >
-          <option value="" defaultValue={''}>
-            Tipo de Imóvel
-          </option>
+          <option value="">Tipo de Imóvel</option>
           <option value={'Apartamento'}>Apartamento</option>
           <option value={'Duplex'}>Duplex</option>
           <option value={'Casa'}>Casa</option>
@@ -44,9 +42,7 @@ export default function SearchControl() {
           className="form-select input-hy bg-white bg-clip-padding bg-no-repeat m-0"
           {...register('finalidade')}
         >
-          <option value="" defaultValue={''}>
-            Finalidade
-          </option>
+          <option value="">Finalidade</option>
           <option value={'Vender'}>Vender</option>
           <option value={'Alugar'}>Alugar</option>
         </select>
