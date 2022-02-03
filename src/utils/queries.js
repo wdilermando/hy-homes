@@ -1,5 +1,10 @@
 import apiClient from './api';
-import { capitalizeString, formatDate, transformFilterParams } from './helpers';
+import {
+  formatDate,
+  getAddresInfo,
+  getListingDetailsInfo,
+  transformFilterParams,
+} from './helpers';
 
 const ALL_LISTINGS = `
 query($filter:ListingModelFilter={}) {
@@ -131,28 +136,8 @@ const listingById = async (id) => {
       { alias: 'area', desc: `${listing.tamanho}m²` },
     ],
     addressInfo: getAddresInfo(listing),
+    detailsInfo: getListingDetailsInfo(listing),
   };
 };
-
-function getAddresInfo(data) {
-  const addressInfo = [
-    'logradouro',
-    'bairro',
-    'cidade',
-    'area',
-    'estado',
-    'cep',
-  ];
-  const convert = Object.keys(data)
-    .filter((key) => addressInfo.includes(key))
-    .reduce((obj, key) => {
-      obj[key] = data[key];
-      return obj;
-    }, {});
-  return Object.entries(convert).map(([key, value]) => ({
-    label: capitalizeString(key),
-    value: value,
-  }));
-}
 
 export { allListings, listingById };

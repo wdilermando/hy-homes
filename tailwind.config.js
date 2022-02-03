@@ -10,7 +10,7 @@ module.exports = {
         'hero-pattern': "url('/images/bg.jpg')",
       }),
       fontFamily: {
-        sans: ['Nunito', 'sans-serif'],
+        sans: ['Nunito Sans', 'sans-serif'],
       },
     },
   },

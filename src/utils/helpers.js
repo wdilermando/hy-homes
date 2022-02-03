@@ -24,3 +24,44 @@ export const transformFilterParams = (valuesToSearch) => {
 
   return filtered.length === 0 ? {} : Object.assign({}, ...filtered);
 };
+
+const filterObject = (arrayToFilter, objectData) => {
+  return Object.keys(objectData)
+    .filter((key) => arrayToFilter.includes(key))
+    .reduce((obj, key) => {
+      obj[key] = objectData[key];
+      return obj;
+    }, {});
+};
+
+const transformObjectToArray = (objectFiltered) => {
+  return Object.entries(objectFiltered).map(([key, value]) => ({
+    label: capitalizeString(key),
+    value: value,
+  }));
+};
+
+export const getAddresInfo = (data) => {
+  const addressInfo = [
+    'logradouro',
+    'bairro',
+    'cidade',
+    'area',
+    'estado',
+    'cep',
+  ];
+  return transformObjectToArray(filterObject(addressInfo, data));
+};
+
+export const getListingDetailsInfo = (data) => {
+  const addressInfo = [
+    'garagens',
+    'tipoDeEstrutura',
+    'suites',
+    'classeEnergetica',
+    'tamanhoDaGaragem',
+    'quartos',
+    'anoDeConstrucao',
+  ];
+  return transformObjectToArray(filterObject(addressInfo, data));
+};

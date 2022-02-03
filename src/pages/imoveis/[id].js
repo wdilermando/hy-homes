@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { BiBed, BiBath, BiExpand, BiCalendar, BiPhone } from 'react-icons/bi';
 import { MdOutlineGarage, MdLocationOn } from 'react-icons/md';
@@ -15,8 +15,8 @@ import { allListings, listingById } from '../../utils/queries';
 import { StructuredText } from 'react-datocms';
 
 export default function ListingDetail({ listing }) {
-  const listingUrl = '#';
-  const iconsProps = { size: 24, className: 'md:w-full' };
+  const [listingUrl, setListingUrl] = useState('#');
+  const iconsProps = { size: 24, className: 'w-full' };
   const mappingListingItems = {
     bedroom: <BiBed {...iconsProps} />,
     bathroom: <BiBath {...iconsProps} />,
@@ -36,10 +36,14 @@ export default function ListingDetail({ listing }) {
     { label: 'Ano', value: '2019' },
   ];
 
+  useEffect(() => {
+    setListingUrl(window.location.href);
+  }, []);
+
   return (
     <section className="w-full min-h-full bg-[#f8f8f8]">
       <div className="md:flex items-end justify-between px-6 md:px-24 xl:px-48 pt-20 md:pt-32 md:space-x-4 space-y-3">
-        <div className="">
+        <div className="md:w-3/4">
           <h1 className="text-4xl font-bold py-2 text-gray-700">
             {listing?.tituloDoAnuncio}
           </h1>
@@ -48,17 +52,24 @@ export default function ListingDetail({ listing }) {
             {listing?.logradouro}
           </p>
         </div>
-        <div className="flex items-center space-x-2">
-          <p>Compartilhe:</p>
-          <FacebookShareButton url={listingUrl}>
-            <FacebookIcon size={32} round />
-          </FacebookShareButton>
-          <WhatsappShareButton url={listingUrl}>
-            <WhatsappIcon size={32} round />
-          </WhatsappShareButton>
+        <div className="flex-col items-center justify-between">
+          <h2 className="text-3xl font-semibold text-blue-500">
+            R$ 235.000,00
+          </h2>
+          <div className="flex items-center justify-between">
+            <p>Compartilhe:</p>
+            <span className="space-x-2">
+              <FacebookShareButton url={listingUrl}>
+                <FacebookIcon size={32} round />
+              </FacebookShareButton>
+              <WhatsappShareButton url={listingUrl}>
+                <WhatsappIcon size={32} round />
+              </WhatsappShareButton>
+            </span>
+          </div>
         </div>
       </div>
-      <div className="px-6 md:px-24 xl:px-48 mt-4 pb-12">
+      <div className="px-6 md:px-48 xl:px-48 mt-4 pb-12">
         <div className="md:flex items-start md:space-x-4 space-y-3 md:space-y-0">
           <article className="w-full md:w-3/4 space-y-6">
             <SwiperThumb
@@ -66,14 +77,14 @@ export default function ListingDetail({ listing }) {
               gallery={listing?.galeria}
             />
             <CardDefaultWrapper title={'Visão geral'}>
-              <div className="w-40">
-                <p className="font-bold">Atualizado em:</p>
-                {listing?._updatedAt}
-              </div>
-              <div className="grid grid-cols-2 md:grid-cols-5 w-full">
+              <div className="flex flex-wrap flex-row items-center md:items-start justify-around md:w-full">
+                <span className="flex-col items-center text-center basis-1/2 md:basis-32">
+                  <p className="font-bold">Atualizado em:</p>
+                  {listing?._updatedAt}
+                </span>
                 {listing?.listingItems?.map((item, index) => (
                   <span
-                    className="flex-col items-center md:text-center"
+                    className="flex-col items-center text-center basis-1/2 md:basis-24"
                     key={index}
                   >
                     {mappingListingItems[item.alias]}
@@ -84,9 +95,9 @@ export default function ListingDetail({ listing }) {
             </CardDefaultWrapper>
             <CardDefaultWrapper title={'Descrição Geral'}>
               <div className="">
-                <p className="text-gray-500 text-md">
+                <span className="text-gray-500 text-md">
                   <StructuredText data={listing?.descricao?.value} />
-                </p>
+                </span>
               </div>
             </CardDefaultWrapper>
             <CardDefaultWrapper title={'Endereço'}>
@@ -107,7 +118,7 @@ export default function ListingDetail({ listing }) {
             <CardDefaultWrapper title={'Detalhes'}>
               <div className="w-full">
                 <div className="grid grid-cols-2 md:grid-cols-3">
-                  {detailsInfo.map((item, index) => (
+                  {listing?.detailsInfo.map((item, index) => (
                     <span key={index}>
                       <strong>{item.label}: </strong>
                       {item.value}

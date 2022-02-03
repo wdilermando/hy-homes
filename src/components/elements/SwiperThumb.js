@@ -9,7 +9,7 @@ SwiperCore.use([Navigation, Thumbs, Pagination]);
 export default function SwiperThumb({ featureImg, gallery }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   return (
-    <>
+    <div>
       <Swiper
         style={{
           '--swiper-navigation-color': '#fff',
@@ -20,14 +20,15 @@ export default function SwiperThumb({ featureImg, gallery }) {
         navigation={true}
         pagination={true}
         thumbs={{ swiper: thumbsSwiper }}
-        className="md:h-96"
+        className=""
       >
         {gallery?.map((item, index) => (
           <SwiperSlide key={index}>
             <Image
-              layout="fill"
+              layout="responsive"
               src={item.url}
-              className="object-cover w-full"
+              width={400}
+              height={250}
               alt={item.filename}
             />
           </SwiperSlide>
@@ -40,19 +41,21 @@ export default function SwiperThumb({ featureImg, gallery }) {
         slidesPerView={5}
         freeMode={true}
         watchSlidesProgress={true}
-        className="md:h-20 mt-1"
+        className="mt-1"
       >
         {gallery?.map((item, index) => (
           <SwiperSlide key={index}>
             <Image
-              layout="fill"
+              layout="responsive"
               src={item.url}
-              className="object-cover w-full"
+              width={20}
+              height={20}
+              objectFit="cover"
               alt={item.filename}
             />
           </SwiperSlide>
         ))}
       </Swiper>
-    </>
+    </div>
   );
 }
