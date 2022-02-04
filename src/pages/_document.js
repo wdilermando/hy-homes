@@ -33,6 +33,7 @@ class MyDocument extends Document {
               rel="stylesheet"
               href="https://unpkg.com/swiper@7/swiper-bundle.min.css"
             />
+            <link rel="stylesheet" href="/css/nprogress.css" />
           </header>
         </Head>
         <body>

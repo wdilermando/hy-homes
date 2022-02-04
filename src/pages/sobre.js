@@ -97,12 +97,12 @@ export default function AboutPage() {
         />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-8">
           <div className="flex-col space-y-3">
-            {saqInfo.slice(0, 3).map((item, index) => (
+            {saqInfo.slice(0, 3).map((item) => (
               <Accordion {...item} key={item.id} />
             ))}
           </div>
           <div className="flex-col space-y-3">
-            {saqInfo.slice(3).map((item, index) => (
+            {saqInfo.slice(3).map((item) => (
               <Accordion {...item} key={item.id} />
             ))}
           </div>

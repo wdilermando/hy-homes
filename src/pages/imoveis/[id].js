@@ -43,7 +43,7 @@ export default function ListingDetail({ listing }) {
   return (
     <section className="w-full min-h-full bg-[#f8f8f8]">
       <div className="md:flex items-end justify-between px-6 md:px-24 xl:px-48 pt-20 md:pt-32 md:space-x-4 space-y-3">
-        <div className="md:w-3/4">
+        <div className="md:w-3/5">
           <h1 className="text-4xl font-bold py-2 text-gray-700">
             {listing?.tituloDoAnuncio}
           </h1>
@@ -70,8 +70,8 @@ export default function ListingDetail({ listing }) {
         </div>
       </div>
       <div className="px-6 md:px-48 xl:px-48 mt-4 pb-12">
-        <div className="md:flex items-start md:space-x-4 space-y-3 md:space-y-0">
-          <article className="w-full md:w-3/4 space-y-6">
+        <div className="md:flex items-start justify-between md:space-x-6 space-y-3 md:space-y-0">
+          <article className="w-full md:w-3/5 space-y-6">
             <SwiperThumb
               featureImg={listing?.imagemDestaque}
               gallery={listing?.galeria}
