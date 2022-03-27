@@ -10,7 +10,7 @@ function SearchPage({ listings }) {
   if (filteredListing == undefined) {
     return 'loading';
   }
-  const listingFiltered = listings.filter((o) => {
+  const listingFiltered = listings.filter(o => {
     return (
       o.finalidade.includes(filteredListing?.finalidade) &&
       o.tipoDeImovel.includes(filteredListing?.tipoDeImovel) &&
@@ -18,7 +18,7 @@ function SearchPage({ listings }) {
     );
   });
 
-  const filteredValues = (values) => {
+  const filteredValues = values => {
     setFilteredListing(values);
   };
 
@@ -44,7 +44,7 @@ function SearchPage({ listings }) {
         />
         {hasResults ? (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {listingFiltered.map((item) => (
+            {listingFiltered.map(item => (
               <CardListing {...item} key={item.id} />
             ))}
           </div>
@@ -61,7 +61,7 @@ function SearchPage({ listings }) {
   );
 }
 
-export async function getServerSideProps({ query }) {
+export async function getStaticProps({ query }) {
   const results = await allListings({ ...query });
 
   return {

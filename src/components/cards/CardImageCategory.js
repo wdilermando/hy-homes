@@ -1,5 +1,4 @@
 import React from 'react';
-import Image from 'next/image';
 
 export default function CardImageCategory({
   imgSrc,
@@ -11,12 +10,10 @@ export default function CardImageCategory({
     <div
       className={`relative h-96 bg-gradient-to-b from-transparent to-gray-600 bg-opacity-50 max-w-full rounded-md overflow-hidden fix-ov group`}
     >
-      <Image
+      <img
         src={imgSrc}
-        layout="fill"
-        objectFit="cover"
         alt={title}
-        className="mix-blend-multiply group-hover:scale-105 transition-transform duration-500 ease-in-out"
+        className="mix-blend-multiply object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out"
       />
       {byRegion ? (
         <span className="flex flex-col items-start justify-between ml-4 py-4 absolute h-full text-white">

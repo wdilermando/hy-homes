@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import SwiperCore, { Navigation, Thumbs, Pagination } from 'swiper';
-import Image from 'next/image';
+
 SwiperCore.use([Navigation, Thumbs, Pagination]);
 
 export default function SwiperThumb({ featureImg, gallery }) {
@@ -24,13 +24,7 @@ export default function SwiperThumb({ featureImg, gallery }) {
       >
         {gallery?.map((item, index) => (
           <SwiperSlide key={index}>
-            <Image
-              layout="responsive"
-              src={item.url}
-              width={400}
-              height={250}
-              alt={item.filename}
-            />
+            <img src={item.url} width={400} height={250} alt={item.filename} />
           </SwiperSlide>
         ))}
       </Swiper>
@@ -45,12 +39,11 @@ export default function SwiperThumb({ featureImg, gallery }) {
       >
         {gallery?.map((item, index) => (
           <SwiperSlide key={index}>
-            <Image
-              layout="responsive"
+            <img
               src={item.url}
               width={20}
               height={20}
-              objectFit="cover"
+              className="object-cover"
               alt={item.filename}
             />
           </SwiperSlide>

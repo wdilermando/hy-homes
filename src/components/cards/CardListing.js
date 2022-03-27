@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import Image from 'next/image';
+
 import React from 'react';
 import { MdLocationOn } from 'react-icons/md';
 import { FiCamera } from 'react-icons/fi';
@@ -30,14 +30,12 @@ export default function CardListing({
         <div className="flex justify-center rounded-md fix-ov h-full">
           <div className=" bg-white group cursor-pointer">
             <div className="relative">
-              <Image
+              <img
                 className="rounded-t-md h-4 group-hover:scale-105 transition-transform duration-500 ease-in-out"
                 src={imagemDestaque.url}
                 alt={tituloDoAnuncio}
-                layout="responsive"
                 width={'200px'}
                 height={'120px'}
-                objectFit="cover"
               />
               <span className="absolute top-4 w-full px-5 flex justify-between">
                 {destaque && (

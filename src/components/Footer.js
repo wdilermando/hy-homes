@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import React from 'react';
 
 import { FaFacebookF, FaRegBuilding, FaInstagram } from 'react-icons/fa';
@@ -56,15 +55,13 @@ export default function Footer() {
             <h4 className="title-footer">Imoveis em destaque</h4>
             <div className="flex items-center cursor-pointer hover:bg-gray-700">
               <span className="w-1/4">
-                <Image
+                <img
                   src={
                     'https://pt-wpresidence.b-cdn.net/wp-content/uploads/2021/05/decor2-1110x623.jpg'
                   }
-                  layout="responsive"
                   alt=""
                   width={10}
                   height={10}
-                  objectFit="cover"
                   className="w-2/5"
                 />
               </span>
