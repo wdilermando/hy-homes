@@ -173,17 +173,17 @@ export default function ListingDetail({ listing }) {
 
 export async function getStaticPaths() {
   const listings = await allListings();
-  const paths = listings.map((listing) => ({
-    params: { id: listing.id },
+  const paths = listings.map(listing => ({
+    params: { id: listing?.id },
   }));
   return {
     paths,
-    fallback: true,
+    fallback: false,
   };
 }
 
 export async function getStaticProps(context) {
-  const listing = await listingById(context.params.id.toString());
+  const listing = await listingById(context?.params?.id.toString());
   return {
     props: { listing }, // will be passed to the page component as props
   };
