@@ -172,8 +172,8 @@ export default function ListingDetail({ listing }) {
 }
 
 export async function getStaticPaths() {
-  const listings = await allListings();
-  const paths = listings.map(listing => ({
+  const listings = (await allListings()) || [];
+  const paths = listings?.map(listing => ({
     params: { id: listing?.id },
   }));
   return {
